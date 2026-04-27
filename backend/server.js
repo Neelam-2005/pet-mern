@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -13,19 +14,18 @@ mongoose.connect("mongodb://127.0.0.1:27017/petDB")
 .then(() => console.log("✅ MongoDB Connected"))
 .catch(err => console.log("❌ DB Error:", err));
 
-// Routes
+// API Routes
 const petRoutes = require("./routes/petRoutes");
 app.use("/api/pets", petRoutes);
 
-// Server
-app.listen(5000, () => {
-    console.log("🚀 Server running on http://localhost:5000");
-});
-
-const path = require("path");
-
+// Serve frontend
 app.use(express.static(path.join(__dirname, "build")));
 
-app.get("/*", (req, res) => {
+app.get("/:path(*)", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
+// Server (KEEP THIS LAST)
+app.listen(5000, () => {
+    console.log("🚀 Server running on port 5000");
 });
