@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
-
 // Server
 app.listen(5000, () => {
     console.log("🚀 Server running on port 5000");
