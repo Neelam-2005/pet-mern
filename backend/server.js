@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/petDB")
+mongoose.connect("mongodb+srv://kbtug23652_db_user:23652@cluster0.soa3seh.mongodb.net/?appName=Cluster0/petDB")
 .then(() => console.log("✅ MongoDB Connected"))
 .catch(err => console.log("❌ DB Error:", err));
 
